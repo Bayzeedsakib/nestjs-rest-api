@@ -50,7 +50,7 @@ export class UserService {
     }
   }
 
-  // 2️⃣ Get all users
+  // Get all users
   async getAllUsers() {
     const users = await this.prisma.user.findMany(
       {
@@ -63,7 +63,7 @@ export class UserService {
     };
   }
 
-  // 3️⃣ Get user by ID
+  // Get user by ID
   async getUserById(id: number) {
     const user =
       await this.prisma.user.findUnique({
@@ -80,7 +80,7 @@ export class UserService {
     };
   }
 
-  // 4️⃣ Search user by email
+  // Search user by email
   async searchUserByEmail(email: string) {
     const user =
       await this.prisma.user.findUnique({
@@ -97,7 +97,7 @@ export class UserService {
     };
   }
 
-  // 5️⃣ Replace (PUT)
+  // Replace (PUT)
   async replaceUser(id: number, dto: UserDto) {
     const hash = await argon.hash(dto.password);
     const user = await this.prisma.user.update({
@@ -116,7 +116,7 @@ export class UserService {
     };
   }
 
-  // 6️⃣ Update (PATCH)
+  // Update (PATCH)
   async updateUser(
     id: number,
     dto: Partial<UserDto>,
@@ -139,7 +139,7 @@ export class UserService {
     };
   }
 
-  // 7️⃣ Delete
+  // Delete
   async deleteUser(id: number) {
     await this.prisma.user.delete({
       where: { id },
@@ -149,7 +149,7 @@ export class UserService {
     };
   }
 
-  // 8️⃣ Count users
+  // Count users
   async countUsers() {
     const count = await this.prisma.user.count();
     return {
